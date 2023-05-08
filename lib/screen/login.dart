@@ -24,7 +24,7 @@ class _LoginState extends State<Login> {
   Future login() async {
     isloading = true;
     setState(() {});
-    var url = 'http://192.168.56.1/taxi_auto/auth/login.php';
+    var url = 'http://192.168.56.1/auto_taxi/auth/login.php';
     var res = await http.post(Uri.parse(url), body: {
       'email': emailController.text,
       'password': passController.text,
@@ -75,137 +75,139 @@ class _LoginState extends State<Login> {
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.all(0),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  height: 200,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('images/image1.jpg'),
-                          fit: BoxFit.fill)),
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned(
-                        left: 30,
-                        width: 80,
-                        height: 70,
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                'images/image1.jpg',
+          child: Center(
+            child: Container(
+              padding: const EdgeInsets.all(0),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    height: 200,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('images/taxi22.png'),
+                            fit: BoxFit.fill)),
+                    child: Stack(
+                      children: <Widget>[
+                        // Positioned(
+                        //   left: 30,
+                        //   width: 80,
+                        //   height: 70,
+                        //   child: Container(
+                        //     decoration: const BoxDecoration(
+                        //       image: DecorationImage(
+                        //         image: AssetImage(
+                        //           'images/image1.jpg',
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+                        Positioned(
+                          right: 40,
+                          top: 0,
+                          width: 80,
+                          height: 80,
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(
+                                  'images/image1.jpg',
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        right: 40,
-                        top: 0,
-                        width: 80,
-                        height: 80,
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                'images/image1.jpg',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        padding: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black,
-                                  blurRadius: 20.0,
-                                  offset: Offset(0, 10))
-                            ]),
-                        child: Column(
-                          children: <Widget>[
-                            /*--------------champ email-----------------*/
-                            MyTextField(
-                              controller: emailController,
-                              icon: Icons.email,
-                              notSowText: false,
-                              placeholder: 'Email',
-                            ),
-                            /*------------champ mot de passe-------------------*/
-                            MyTextField(
-                              controller: passController,
-                              icon: Icons.lock,
-                              notSowText: true,
-                              placeholder: 'mot de passe',
-                            ),
-                          ],
+                  Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          padding: const EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black,
+                                    blurRadius: 20.0,
+                                    offset: Offset(0, 10))
+                              ]),
+                          child: Column(
+                            children: <Widget>[
+                              /*--------------champ email-----------------*/
+                              MyTextField(
+                                controller: emailController,
+                                icon: Icons.email,
+                                notSowText: false,
+                                placeholder: 'Email',
+                              ),
+                              /*------------champ mot de passe-------------------*/
+                              MyTextField(
+                                controller: passController,
+                                icon: Icons.lock,
+                                notSowText: true,
+                                placeholder: 'mot de passe',
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      /*-----------Button Login--------------*/
-                      GestureDetector(
-                        onTap: () {
-                          login();
-                        },
-                        child: isloading == true
-                            ? const CircularProgressIndicator()
-                            : Container(
-                                height: 50,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    gradient: const LinearGradient(colors: [
-                                      Colors.blue,
-                                      Colors.lightBlueAccent,
-                                    ])),
-                                child: const Center(
-                                  child: Text(
-                                    'Connexion',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16.0,
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        /*-----------Button Login--------------*/
+                        GestureDetector(
+                          onTap: () {
+                            login();
+                          },
+                          child: isloading == true
+                              ? const CircularProgressIndicator()
+                              : Container(
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      gradient: const LinearGradient(colors: [
+                                        Colors.blue,
+                                        Colors.lightBlueAccent,
+                                      ])),
+                                  child: const Center(
+                                    child: Text(
+                                      'Connexion',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16.0,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      /*----------------mot de passe oublier--------------------*/
-                      const Lien(
-                        title: 'mot de passe oublier ?',
-                        toWidget: ForgotPassword(),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      /*-------- vous n'avez pas un compte -------*/
-                      const Lien(
-                        title: 'vous n\'avez pas un compte ?',
-                        toWidget: Register(),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        /*----------------mot de passe oublier--------------------*/
+                        const Lien(
+                          title: 'mot de passe oublier ?',
+                          toWidget: ForgotPassword(),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        /*-------- vous n'avez pas un compte -------*/
+                        const Lien(
+                          title: 'vous n\'avez pas un compte ?',
+                          toWidget: Register(),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

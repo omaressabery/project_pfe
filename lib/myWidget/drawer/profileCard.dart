@@ -19,7 +19,7 @@ class ProfileCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       margin: const EdgeInsets.all(10),
-      decoration: BoxDecoration(color: Colors.deepPurple, boxShadow: const [
+      decoration: const BoxDecoration(color: Colors.cyan, boxShadow: [
         BoxShadow(
           color: Colors.black,
           blurRadius: 10,

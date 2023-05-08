@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:auto_taxi/myWidget/text_field.dart';
@@ -26,7 +28,7 @@ class _RegisterState extends State<Register> {
     await Future.delayed(const Duration(seconds: 2));
     isloading = true;
     setState(() {});
-    var url = 'http://192.168.56.1/taxi_auto/auth/register.php';
+    var url = 'http://192.168.56.1/auto_taxi/auth/signup.php';
     var data = {
       'fname': prenomController.text,
       'lname': nomController.text,
@@ -72,6 +74,7 @@ class _RegisterState extends State<Register> {
               gravity: ToastGravity.CENTER,
               fontSize: 16.0,
             );
+
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (ctx) {
@@ -81,7 +84,7 @@ class _RegisterState extends State<Register> {
             );
           } else {
             Fluttertoast.showToast(
-              msg: 'vous etes erreur!!!',
+              msg: 'vous avez un erreur!!!',
               backgroundColor: Colors.red,
               gravity: ToastGravity.CENTER,
               fontSize: 16.0,
@@ -98,123 +101,125 @@ class _RegisterState extends State<Register> {
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 240, 190, 114),
         body: SingleChildScrollView(
-          child: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('images/image1.jpg'),
-                fit: BoxFit.cover,
+          child: Center(
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('images/image1.jpg'),
+                  fit: BoxFit.fitHeight,
+                ),
               ),
-            ),
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        padding: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Colors.black,
-                                  blurRadius: 20.0,
-                                  offset: Offset(0, 10))
-                            ]),
-                        child: Column(
-                          children: <Widget>[
-                            /*--------------champ Preom-----------------*/
-                            MyTextField(
-                              controller: prenomController,
-                              icon: Icons.person_4,
-                              notSowText: false,
-                              placeholder: 'Prenom',
-                            ),
-                            /*--------------champ Nom-----------------*/
-                            MyTextField(
-                              controller: nomController,
-                              icon: Icons.family_restroom,
-                              notSowText: false,
-                              placeholder: 'Nom',
-                            ),
-                            /*--------------champ email-----------------*/
-                            MyTextField(
-                              controller: emailController,
-                              icon: Icons.email,
-                              notSowText: false,
-                              placeholder: 'Email',
-                            ),
-                            /*--------------champ phone-----------------*/
-                            MyTextField(
-                              controller: phoneController,
-                              icon: Icons.phone,
-                              notSowText: false,
-                              placeholder: 'Numéro de Telephone',
-                            ),
-                            /*--------------champ mot de passe-----------------*/
-                            MyTextField(
-                              controller: passController,
-                              icon: Icons.lock,
-                              notSowText: true,
-                              placeholder: 'Mot de passe',
-                            ),
-                            /*------------champ confirm mot de passe-------------------*/
-                            MyTextField(
-                              controller: confirmPassController,
-                              icon: Icons.lock,
-                              notSowText: true,
-                              placeholder: 'confirme mot de passe',
-                            ),
-                          ],
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          padding: const EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black,
+                                    blurRadius: 20.0,
+                                    offset: Offset(0, 10))
+                              ]),
+                          child: Column(
+                            children: <Widget>[
+                              /*--------------champ Preom-----------------*/
+                              MyTextField(
+                                controller: prenomController,
+                                icon: Icons.person_4,
+                                notSowText: false,
+                                placeholder: 'Prenom',
+                              ),
+                              /*--------------champ Nom-----------------*/
+                              MyTextField(
+                                controller: nomController,
+                                icon: Icons.family_restroom,
+                                notSowText: false,
+                                placeholder: 'Nom',
+                              ),
+                              /*--------------champ email-----------------*/
+                              MyTextField(
+                                controller: emailController,
+                                icon: Icons.email,
+                                notSowText: false,
+                                placeholder: 'Email',
+                              ),
+                              /*--------------champ phone-----------------*/
+                              MyTextField(
+                                controller: phoneController,
+                                icon: Icons.phone,
+                                notSowText: false,
+                                placeholder: 'Numéro de Telephone',
+                              ),
+                              /*--------------champ mot de passe-----------------*/
+                              MyTextField(
+                                controller: passController,
+                                icon: Icons.lock,
+                                notSowText: true,
+                                placeholder: 'Mot de passe',
+                              ),
+                              /*------------champ confirm mot de passe-------------------*/
+                              MyTextField(
+                                controller: confirmPassController,
+                                icon: Icons.lock,
+                                notSowText: true,
+                                placeholder: 'confirme mot de passe',
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      /*----------Button Register----------------*/
-                      GestureDetector(
-                        onTap: () {
-                          register();
-                        },
-                        child: isloading == true
-                            ? const CircularProgressIndicator()
-                            : Container(
-                                height: 50,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    gradient: const LinearGradient(colors: [
-                                      Colors.blue,
-                                      Colors.lightBlueAccent,
-                                    ])),
-                                child: const Center(
-                                  child: Text(
-                                    'Enregistrer',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16.0,
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        /*----------Button Register----------------*/
+                        GestureDetector(
+                          onTap: () {
+                            register();
+                          },
+                          child: isloading == true
+                              ? const CircularProgressIndicator()
+                              : Container(
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      gradient: const LinearGradient(colors: [
+                                        Colors.blue,
+                                        Colors.lightBlueAccent,
+                                      ])),
+                                  child: const Center(
+                                    child: Text(
+                                      'Enregistrer',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16.0,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
 
-                      /*-------- vous avez un compte -------*/
-                      const Lien(
-                        title: 'vous avez un compte',
-                        toWidget: Login(),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                        /*-------- vous avez un compte -------*/
+                        const Lien(
+                          title: 'vous avez un compte',
+                          toWidget: Login(),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

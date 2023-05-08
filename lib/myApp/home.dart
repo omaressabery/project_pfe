@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:auto_taxi/myWidget/drawer/profileCard.dart';
 import 'package:auto_taxi/myWidget/drawer/drawer_button.dart';
@@ -31,7 +33,6 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    // TODO: implement initState
     getPref();
     super.initState();
   }
@@ -49,8 +50,28 @@ class _HomeState extends State<Home> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Center(
-            child: Text('Home'),
+          backgroundColor: Colors.cyan,
+          title: Center(
+            child: Row(
+              children: [
+                CircleAvatar(
+                  radius: 30,
+                  child: Image.asset(
+                    "images/logocircle.png",
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                const Text(
+                  'Auto BM TAXI',
+                  style: TextStyle(
+                    fontFamily: 'Alkalami',
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         drawer: Drawer(
